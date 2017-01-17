@@ -1,0 +1,11 @@
+<div id="main_template">
+    <main class="main" data-bind="split: { splits: ['#editors','#output'], flex: true }">
+        <section id="editors" data-bind="split: { splits: ['#editor_json','#editor_css'], direction: 'vertical', flex: true }">
+            <div id="editor_json" data-bind="editor: { storeValue: jsonMetadata, initialValue: jsonMetadata }"></div>
+            <div id="editor_css" data-bind="editor: { storeValue: cssMetadata, mode: 'css' }"></div>
+        </section>
+        <section id="output">
+            <iframe src="./output.html" frameborder="0"></iframe>
+        </section>
+    </main>
+</div>
