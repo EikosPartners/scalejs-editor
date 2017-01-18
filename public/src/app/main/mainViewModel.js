@@ -2,11 +2,9 @@ import { observable } from 'knockout';
 
 export default function main() {
     const options = JSON.parse(localStorage.getItem('scalejs_editor_options') || '{}');
-    const jsonMetadata = observable({
-        "type": "template",
-        "template": "text",
-        "text": "Hello World!"
-    });
+    const savedJson = JSON.parse(localStorage.getItem('scalejs_editor_json') ||
+        '{"type": "template", "template": "text","text": "Hello World!"}');
+    const jsonMetadata = observable(savedJson);
     const cssMetadata = observable();
     const controls = {
         main: observable(options.main || 'split'),
