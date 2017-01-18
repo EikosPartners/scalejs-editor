@@ -1,5 +1,6 @@
 <div id="main_template">
     <header class="main-header">
+        <span class="title-header">ScaleJS 2.0 Editor</span>
         <div class="main-header-actions">
             <button data-class="main-split-actions split">Split</button>
             <button data-class="main-split-actions 0">Output</button>
@@ -10,23 +11,34 @@
         <section id="editor_section" data-bind="split: { splits: ['#editor_1','#editor_2'], direction: 'vertical', flex: true, control: controls.editors }">
             <div id="editor_1">
                 <header class="secondary-header">
-                    <button data-class="main-split-actions split editors">Split</button>
-                    <button data-class="main-split-actions 1 editors">Full</button>
+                    <span class="title-header">PJSON</span>
+                    <div class="button-controls">
+                        <button data-class="main-split-actions split editors">Split</button>
+                        <button data-class="main-split-actions 1 editors">Full</button>
+                    </div>
                 </header>
                 <div id="editor_json" data-bind="editor: { storeValue: jsonMetadata, initialValue: jsonMetadata }"></div>
             </div>
             <div id="editor_2">
                 <header class="secondary-header">
-                    <button data-class="main-split-actions split editors">Split</button>
-                    <button data-class="main-split-actions 0 editors">Full</button>
+                    <span class="title-header">CSS</span>
+                    <div class="button-controls">
+                        <button data-class="main-split-actions split editors">Split</button>
+                        <button data-class="main-split-actions 0 editors">Full</button>
+                    </div>
                 </header>
                 <div id="editor_css" data-bind="editor: { storeValue: cssMetadata, mode: 'css' }"></div>
             </div>
         </section>
         <section id="output_section">
             <header class="secondary-header">
-                <button data-class="main-output-view desktop">desktop</button>
-                <button data-class="main-output-view mobile">mobile</button>
+                <span class="title-header">Output</span>
+                <div class="button-controls">
+                    <button data-class="main-output-view desktop">desktop</button>
+                    <button data-class="main-output-view mobile">mobile</button>
+                </div>
+                <!--<span data-class="main-output-view desktop">desktop</span>
+                <span data-class="main-output-view mobile">mobile</span>-->
             </header>
             <div id="output_container">
                 <iframe src="./output.html" frameborder="0" data-class="main-iframe-styles"></iframe>

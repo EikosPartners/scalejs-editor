@@ -16,6 +16,7 @@ main {
 }
 
 section {
+    position: relative;
     flex-grow: 1;
     flex-basis: 0;
     height: calc(100vh - 50px); // make variable
@@ -32,9 +33,11 @@ section#editor_section {
     align-items: center;
     height: calc(100vh - 80px);
     background-color: lightslategray;
+    margin-top: 30px;
 }
 
 section#editor_section #editor_1, section#editor_section #editor_2 {
+    position: relative;
     flex-grow: 1;
     flex-basis: 0;
     // height: 50%;
@@ -46,12 +49,14 @@ iframe {
     background-color: white;
     &.mobile {
         height: 568px;
-        width: 320px;
+        max-width: 320px;
         box-shadow: 0 0 20px 4px;
         border-radius: 4px;
     }
 }
 
 #editor_json, #editor_css {
+    // position: relative;
+    margin-top: 30px;
     height: calc(100% - 30px);
 }
