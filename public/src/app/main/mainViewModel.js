@@ -4,8 +4,9 @@ export default function main() {
     const options = JSON.parse(localStorage.getItem('scalejs_editor_options') || '{}');
     const savedJson = JSON.parse(localStorage.getItem('scalejs_editor_json') ||
         '{"type": "template", "template": "text","text": "Hello World!"}');
+    const savedCss = localStorage.getItem('scalejs_editor_css') || '';
     const jsonMetadata = observable(savedJson);
-    const cssMetadata = observable();
+    const cssMetadata = observable(savedCss);
     const controls = {
         main: observable(options.main || 'split'),
         output: observable(options.output || 'desktop'),

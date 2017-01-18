@@ -2,13 +2,15 @@ import { observable } from 'knockout';
 
 export default function mainOutput() {
     const initialJsonValue = JSON.parse(localStorage.getItem('scalejs_editor_json') || {});
+    const initialCssValue = localStorage.getItem('scalejs_editor_css' || '');
     const metadata = observable(initialJsonValue);
     const style = document.createElement('style');
 
+    // apply saved styles to the window
+    style.innerHTML = initialCssValue;
 
     // add the style tag to the iframe and clear ut the localstorage
     document.querySelector('head').appendChild(style);
-    localStorage.setItem('scalejs_editor_css', '');
 
     // event listner for localstorage
     window.addEventListener('storage', () => {
@@ -26,7 +28,7 @@ export default function mainOutput() {
         }
 
         // update css if it has changed
-        if (css && css !== style.innerHTML) {
+        if (css !== style.innerHTML) {
             style.innerHTML = css;
         }
     });
