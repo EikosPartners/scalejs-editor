@@ -17,7 +17,7 @@ ko.bindingHandlers.editor = {
         const editor = ace.edit(id);
         const options = valueAccessor();
         const storeValue = options.storeValue;
-        const initialValue = options.initialValue && JSON.stringify(ko.unwrap(options.initialValue));
+        const initialValue = options.initialValue && JSON.stringify(ko.unwrap(options.initialValue), null, 4);
 
         if (!ko.isObservable(storeValue)) { // storevalue must be an observable if not error
             console.error('You provided a storeValue property but it is not an observable');
