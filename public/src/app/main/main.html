@@ -1,26 +1,35 @@
 <div id="main_template">
     <header class="main-header">
         <div class="main-header-actions">
-            <button value="split" data-class="main-split-actions split">Split</button>
-            <button value="0" data-class="main-split-actions 0">Output</button>
-            <button value="1" data-class="main-split-actions 1">Editors</button>
+            <button data-class="main-split-actions split">Split</button>
+            <button data-class="main-split-actions 0">Output</button>
+            <button data-class="main-split-actions 1">Editors</button>
         </div>
     </header>
     <main class="main" data-bind="split: { splits: ['#editor_section','#output_section'], flex: true, control: controls.main }">
-        <section id="editor_section" data-bind="split: { splits: ['#editor_1','#editor_2'], direction: 'vertical', flex: true }">
+        <section id="editor_section" data-bind="split: { splits: ['#editor_1','#editor_2'], direction: 'vertical', flex: true, control: controls.editors }">
             <div id="editor_1">
-                <header class="secondary-header"></header>
+                <header class="secondary-header">
+                    <button data-class="main-split-actions split editors">Split</button>
+                    <button data-class="main-split-actions 1 editors">Full</button>
+                </header>
                 <div id="editor_json" data-bind="editor: { storeValue: jsonMetadata, initialValue: jsonMetadata }"></div>
             </div>
             <div id="editor_2">
-                <header class="secondary-header"></header>
+                <header class="secondary-header">
+                    <button data-class="main-split-actions split editors">Split</button>
+                    <button data-class="main-split-actions 0 editors">Full</button>
+                </header>
                 <div id="editor_css" data-bind="editor: { storeValue: cssMetadata, mode: 'css' }"></div>
             </div>
         </section>
         <section id="output_section">
-            <header class="secondary-header"></header>
+            <header class="secondary-header">
+                <button data-class="main-output-view desktop">desktop</button>
+                <button data-class="main-output-view mobile">mobile</button>
+            </header>
             <div id="output_container">
-                <iframe src="./output.html" frameborder="0"></iframe>
+                <iframe src="./output.html" frameborder="0" data-class="main-iframe-styles"></iframe>
             </div>
         </section>
     </main>
