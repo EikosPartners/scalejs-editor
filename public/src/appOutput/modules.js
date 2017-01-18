@@ -1,5 +1,13 @@
 // Load common imports:
-import 'scalejs.metadatafactory-common/dist/template/templateModule';
-import 'scalejs.metadatafactory-common/dist/input/inputModule';
+import 'scalejs.metadatafactory-common';
+
+import 'scalejs.metadatafactory-common/dist/action/actions/popup/popup';
+import 'scalejs.metadatafactory-common/dist/action/actions/ajax';
+import 'scalejs.metadatafactory-common/dist/action/actions/event';
+import 'scalejs.metadatafactory-common/dist/action/actions/redirect';
+import 'scalejs.metadatafactory-common/dist/action/actions/route';
+import 'scalejs.metadatafactory-common/dist/action/actions/series';
+
+import 'scalejs.metadatafactory-common/dist/action/actions/popup/popup.scss';
 
 // Load app-specific modules:
