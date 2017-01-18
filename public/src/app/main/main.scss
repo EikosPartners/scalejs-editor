@@ -1,33 +1,57 @@
+$headerHeight: 50px;
+
 body, html {
     padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 main {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: $headerHeight;
 }
+
 section {
     flex-grow: 1;
     flex-basis: 0;
-    height: 100vh;
+    height: calc(100vh - 50px); // make variable
 }
 
-iframe {
-    height: 100%;
-    width: 100%;
-}
-
-section#editors {
+section#editor_section {
     display: flex;
     flex-direction: column;
 }
 
-section#editors #editor_json, section#editors #editor_css {
+#output_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: lightslategray;
+}
+
+section#editor_section #editor_1, section#editor_section #editor_2 {
     flex-grow: 1;
     flex-basis: 0;
-    height: 50vh;
+    // height: 50%;
+}
+
+iframe {
+    height: calc(100vh - 80px);
+    width: 100%;
+    background-color: white;
+    &.mobile {
+        height: 568px;
+        width: 320px;
+        box-shadow: 0 0 20px 4px;
+        border-radius: 4px;
+    }
+}
+
+#editor_json, #editor_css {
+    height: calc(100% - 30px);
 }
