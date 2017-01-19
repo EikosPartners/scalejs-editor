@@ -2,9 +2,9 @@
     <header class="main-header">
         <span class="title-header title-header-large">ScaleJS 2.0 Editor</span>
         <div class="main-header-actions">
-            <button data-class="main-split-actions split">Split</button>
-            <button data-class="main-split-actions 0">Output</button>
-            <button data-class="main-split-actions 1">Editors</button>
+            <button class="editor-button" data-class="main-split-actions 1">Editors</button>
+            <button class="editor-button" data-class="main-split-actions 0">Output</button>
+            <button class="editor-button" data-class="main-split-actions split">Split</button>
         </div>
     </header>
     <main class="main" data-bind="split: { splits: ['#editor_section','#output_section'], flex: true, control: controls.main }">
@@ -13,8 +13,8 @@
                 <header class="secondary-header">
                     <span class="title-header">PJSON</span>
                     <div class="button-controls">
-                        <button data-class="main-split-actions split editors">Split</button>
-                        <button data-class="main-split-actions 1 editors">Full</button>
+                        <button class="editor-button" data-class="main-split-actions 1 editors">Full</button>
+                        <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
                 <div id="editor_json" data-bind="editor: { storeValue: jsonMetadata, initialValue: jsonMetadata }"></div>
@@ -23,8 +23,8 @@
                 <header class="secondary-header">
                     <span class="title-header">CSS</span>
                     <div class="button-controls">
-                        <button data-class="main-split-actions split editors">Split</button>
-                        <button data-class="main-split-actions 0 editors">Full</button>
+                        <button class="editor-button" data-class="main-split-actions 0 editors">Full</button>
+                        <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
                 <div id="editor_css" data-bind="editor: { storeValue: cssMetadata, initialValue: cssMetadata, mode: 'css' }"></div>
@@ -34,8 +34,8 @@
             <header class="secondary-header">
                 <span class="title-header">Output</span>
                 <div class="button-controls">
-                    <button data-class="main-output-view desktop">desktop</button>
-                    <button data-class="main-output-view mobile">mobile</button>
+                    <button class="editor-button" data-class="main-output-view mobile">Mobile</button>
+                    <button class="editor-button" data-class="main-output-view desktop">Desktop</button>
                 </div>
             </header>
             <div id="output_container">
