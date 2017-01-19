@@ -22,7 +22,7 @@ export default function mainOutput() {
             try { // this may not be necessary as we check before we save to localhost
                 metadata(JSON.parse(data));
             } catch (e) {
-                //possibly add warning to user about invalid json
+                // possibly add warning to user about invalid json
             }
         }
 

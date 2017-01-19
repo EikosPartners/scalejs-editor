@@ -6,5 +6,4 @@ import '../../sass/header.scss';
 import '../../sass/gutters.scss';
 import '../../sass/buttons.scss';
 
-
 mainModule(); // start app

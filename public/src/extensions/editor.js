@@ -26,8 +26,10 @@ ko.bindingHandlers.editor = {
         editor.getSession().setMode('ace/mode/' + (options.mode || 'json'));
         editor.setTheme('ace/theme/monokai');
 
-        if(initialValue) { // if we have an initial value set it in editor and then update the storevalue
-            if (typeof initialValue !== 'string') { initialValue = JSON.stringify(initialValue, null, 4); } // if it is already a string do not stringify
+        // if we have an initial value set it in editor and then update the storevalue
+        if (initialValue) {
+            // if it is already a string do not stringify
+            if (typeof initialValue !== 'string') { initialValue = JSON.stringify(initialValue, null, 4); }
             editor.insert(initialValue);
             storeValue && storeValue(initialValue);
         }
@@ -38,4 +40,4 @@ ko.bindingHandlers.editor = {
             });
         }
     }
-}
+};

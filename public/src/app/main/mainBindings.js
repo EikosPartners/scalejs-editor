@@ -8,7 +8,7 @@ export default {
             click: () => {
                 this.controls[section](value === 'split' ? value : ['collapse', value]);
             }
-        }
+        };
     },
     'main-output-view': function (ctx, args) {
         const value = args[1];
@@ -17,11 +17,11 @@ export default {
                 if (value === unwrap(this.controls.output)) { return; }
                 this.controls.output(value);
             }
-        }
+        };
     },
-    'main-iframe-styles': function (ctx) {
+    'main-iframe-styles': function () {
         return {
             css: this.controls.output
-        }
+        };
     }
-}
+};

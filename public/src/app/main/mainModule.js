@@ -11,4 +11,4 @@ export default function () {
     const main = mainViewModel();
 
     root(template('main_template', main));
-};
+}

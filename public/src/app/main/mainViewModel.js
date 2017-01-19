@@ -18,7 +18,7 @@ export default function main() {
             JSON.parse(data); // check to see if it is valid JSON before we save to storage
             localStorage.setItem('scalejs_editor_json', data);
         } catch (e) {
-            //possible notification
+            // possible notification
         }
     });
 
