@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+
 module.exports = {
     context: path.join(__dirname, 'public'),
     entry: {
@@ -13,12 +13,10 @@ module.exports = {
             'scalejs.application': path.join(__dirname, 'node_modules/scalejs/dist/scalejs.application.js'),
             'scalejs.core': path.join(__dirname, 'node_modules/scalejs/dist/scalejs.core.js'),
             'scalejs.sandbox': path.join(__dirname, 'node_modules/scalejs/dist/scalejs.sandbox.js'),
-
             'scalejs.extensions': path.join(__dirname, 'public/src/appOutput/scalejs.extensions.js'),
 
             // extensions
             'dataservice': path.join(__dirname, 'public/src/appOutput/dataservice.js'),
-
             'jquery-ui/autocomplete': path.join(__dirname, 'node_modules/jquery-ui/ui/widgets/autocomplete.js')
         }
     },
@@ -47,7 +45,7 @@ module.exports = {
                 ],
                 exclude: /\.html?$/,
                 query: {
-                  presets: 'es2015',
+                    presets: 'es2015'
                 }
             },
             {
