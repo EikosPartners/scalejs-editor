@@ -13,23 +13,22 @@ export default function mainOutput() {
     document.querySelector('head').appendChild(style);
 
     // event listner for localstorage
-    window.addEventListener('storage', () => {
-        const css = localStorage.getItem('scalejs_editor_css');
-        let json = localStorage.getItem('scalejs_editor_json');
+    window.addEventListener('storage', (e) => {
+        const key = e.key;
+        const data = e.newValue;
 
         // update json if it has changed
-        if (json !== JSON.stringify(metadata())) {
-            try {
-                json = JSON.parse(json);
-                metadata(json)
+        if (key === 'scalejs_editor_json') {
+            try { // this may not be necessary as we check before we save to localhost
+                metadata(JSON.parse(data));
             } catch (e) {
                 //possibly add warning to user about invalid json
             }
         }
 
         // update css if it has changed
-        if (css !== style.innerHTML) {
-            style.innerHTML = css;
+        if (key === 'scalejs_editor_css') {
+            style.innerHTML = data;
         }
     });
 

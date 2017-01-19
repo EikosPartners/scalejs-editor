@@ -14,7 +14,12 @@ export default function main() {
     };
 
     jsonMetadata.subscribe((data) => {
-        localStorage.setItem('scalejs_editor_json', data);
+        try {
+            JSON.parse(data); // check to see if it is valid JSON before we save to storage
+            localStorage.setItem('scalejs_editor_json', data);
+        } catch (e) {
+            //possible notification
+        }
     });
 
     cssMetadata.subscribe((styles) => {
