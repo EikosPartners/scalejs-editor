@@ -11,10 +11,9 @@ module.exports = {
         "linebreak-style": "off",
         "func-names": ["error", "never"],
         "object-shorthand": [2, "properties"],
-        "import/no-extraneous-dependencies": "off", // revisit
+        "import/no-extraneous-dependencies": "off",
         "import/no-duplicates": "off",
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-        // "no-console": "off",
         "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     },
     "globals": {

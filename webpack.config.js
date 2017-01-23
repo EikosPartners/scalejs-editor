@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname, 'docs/build'),
         publicPath: '/build/',
         filename: '[name].bundle.js'
     },
@@ -58,7 +58,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader!autoprefixer-loader',
+                loader: 'style-loader!css-loader!autoprefixer-loader'
             },
             {
                 test: /\.woff|\.woff2|\.svg|.eot|\.png|\.jpg|\.ttf/,
