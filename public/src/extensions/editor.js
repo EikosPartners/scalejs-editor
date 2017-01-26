@@ -17,6 +17,7 @@ ko.bindingHandlers.editor = {
         const editor = ace.edit(id);
         const options = valueAccessor();
         const storeValue = options.storeValue;
+        const updateValue = options.updateValue;
         let initialValue = options.initialValue && ko.unwrap(options.initialValue);
 
         if (!ko.isObservable(storeValue)) { // storevalue must be an observable if not error
@@ -26,18 +27,26 @@ ko.bindingHandlers.editor = {
         editor.getSession().setMode('ace/mode/' + (options.mode || 'json'));
         editor.setTheme('ace/theme/monokai');
 
-        // if we have an initial value set it in editor and then update the storevalue
-        if (initialValue) {
-            // if it is already a string do not stringify
-            if (typeof initialValue !== 'string') { initialValue = JSON.stringify(initialValue, null, 4); }
-            editor.insert(initialValue);
-            storeValue && storeValue(initialValue);
-        }
-
+        // If store value is provided setup the change event listner
         if (storeValue) {
             editor.getSession().on('change', () => {
                 storeValue(editor.getValue());
             });
+        }
+
+        // if update value is provided setup subscription to update editor
+        if (updateValue) {
+            updateValue.subscribe((update) => {
+                editor.setValue('');
+                editor.insert(update);
+            });
+        }
+
+        // if we have an initial value set it in editor
+        if (initialValue) {
+            // if it is already a string do not stringify
+            if (typeof initialValue !== 'string') { initialValue = JSON.stringify(initialValue, null, 4); }
+            editor.insert(initialValue);
         }
     }
 };

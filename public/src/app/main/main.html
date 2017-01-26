@@ -1,6 +1,7 @@
 <div id="main_template">
     <header class="main-header">
         <span class="title-header title-header-large">ScaleJS 2.0 Editor</span>
+        <select name="example" id="example" data-bind="options: examples, optionsText: 'name', optionsValue: 'value', value: selectedExample"></select>
         <div class="main-header-actions">
             <button class="editor-button" data-class="main-split-actions 1">Editors</button>
             <button class="editor-button" data-class="main-split-actions 0">Output</button>
@@ -17,7 +18,7 @@
                         <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
-                <div id="editor_json" data-bind="editor: { storeValue: jsonMetadata, initialValue: jsonMetadata }"></div>
+                <div id="editor_json" data-bind="editor: { storeValue: json.metadata, initialValue: json.initial, updateValue: json.update }"></div>
             </div>
             <div id="editor_2">
                 <header class="secondary-header">
@@ -27,7 +28,7 @@
                         <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
-                <div id="editor_css" data-bind="editor: { storeValue: cssMetadata, initialValue: cssMetadata, mode: 'css' }"></div>
+                <div id="editor_css" data-bind="editor: { storeValue: css.metadata, initialValue: css.initial, updateValue: css.update, mode: 'css' }"></div>
             </div>
         </section>
         <section id="output_section">

@@ -1,19 +1,33 @@
 import { observable } from 'knockout';
+import { examples } from '../../examples/loadExamples';
 
 export default function main() {
-    const options = JSON.parse(localStorage.getItem('scalejs_editor_options') || '{}');
-    const savedJson = JSON.parse(localStorage.getItem('scalejs_editor_json') ||
-        '{"type": "template", "template": "text","text": "Hello World!"}');
-    const savedCss = localStorage.getItem('scalejs_editor_css') || '';
-    const jsonMetadata = observable(savedJson);
-    const cssMetadata = observable(savedCss);
-    const controls = {
-        main: observable(options.main || 'split'),
-        output: observable(options.output || 'desktop'),
-        editors: observable(options.editors || 'split')
+    const json = {
+        metadata: observable().extend({ deferred: true, rateLimit: { timeout: 500, method: 'notifyWhenChangesStop' } }),
+        update: observable(),
+        initial: JSON.parse(localStorage.getItem('scalejs_editor_json') ||
+            '{"type": "template", "template": "text","text": "Hello World!"}')
     };
+    const css = {
+        metadata: observable().extend({ deffered: true, rateLimit: { method: 'notifyWhenChangesStop' } }),
+        update: observable(),
+        initial: localStorage.getItem('scalejs_editor_css') || ''
+    };
+    const controls = {
+        main: observable('split'),
+        output: observable('desktop'),
+        editors: observable('split')
+    };
+    const selectedExample = observable('');
 
-    jsonMetadata.subscribe((data) => {
+    selectedExample.subscribe((index) => {
+        if (index) {
+            json.update(examples[index].data.json || {});
+            css.update(examples[index].data.css || '');
+        }
+    });
+
+    json.metadata.subscribe((data) => {
         try {
             JSON.parse(data); // check to see if it is valid JSON before we save to storage
             localStorage.setItem('scalejs_editor_json', data);
@@ -22,13 +36,15 @@ export default function main() {
         }
     });
 
-    cssMetadata.subscribe((styles) => {
+    css.metadata.subscribe((styles) => {
         localStorage.setItem('scalejs_editor_css', styles);
     });
 
     return {
-        jsonMetadata,
-        cssMetadata,
+        json,
+        css,
+        examples,
+        selectedExample,
         controls
     };
 }
