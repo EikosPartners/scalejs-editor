@@ -53,12 +53,22 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
                 test: /\.scss$/,
                 loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
             },
             {
                 test: /\.css$/,
+                exclude: path.join(__dirname, 'public/src/examples'),
                 loader: 'style-loader!css-loader!autoprefixer-loader'
+            },
+            {
+                test: /\.css$/,
+                include: path.join(__dirname, 'public/src/examples'),
+                loader: 'css-content-loader'
             },
             {
                 test: /\.woff|\.woff2|\.svg|.eot|\.png|\.jpg|\.ttf/,

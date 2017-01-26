@@ -1,0 +1,55 @@
+{
+    "type": "template",
+    "template": "div",
+    "classes": "viewport",
+    "children": [
+        {
+            "type": "adapter",
+            "id": "userAuthForm",
+            "template": "div",
+            "classes": "form-container",
+            "children": [
+                {
+                    "type": "validations",
+                    "classes": "validations"
+                },
+                {
+                    "type": "template",
+                    "template": "div",
+                    "classes": "form",
+                    "children": [
+                        {
+                            "type": "input",
+                            "inputType": "text",
+                            "id": "username",
+                            "label": "Username",
+                            "options": {
+                                "validations": {
+                                    "required": true
+                                }
+                            }
+                        },
+                        {
+                            "type": "input",
+                            "inputType": "text",
+                            "id": "password",
+                            "label": "Password",
+                            "options": {
+                                "validations": {
+                                    "required": true
+                                }
+                            }
+                        },
+                        {
+                            "type": "action",
+                            "actionType": "event",
+                            "text": "Login",
+                            "validate": "userAuthForm.validate",
+                            "classes": "btn btn-login"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
