@@ -1,7 +1,9 @@
 <div id="main_template">
     <header class="main-header">
-        <span class="title-header title-header-large">ScaleJS 2.0 Editor</span>
-        <select name="example" id="example" data-bind="options: examples, optionsText: 'name', optionsValue: 'value', value: selectedExample"></select>
+        <div>
+            <span class="title-header title-header-large">ScaleJS 2.0 Editor</span>
+            <select class="editor-select" name="example" id="example" data-bind="options: examples, optionsText: 'name', optionsValue: 'value', value: selectedExample"></select>
+        </div>
         <div class="main-header-actions">
             <button class="editor-button" data-class="main-split-actions 1">Editors</button>
             <button class="editor-button" data-class="main-split-actions 0">Output</button>

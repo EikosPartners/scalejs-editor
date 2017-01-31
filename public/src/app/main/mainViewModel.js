@@ -4,13 +4,13 @@ import { examples } from '../../examples/loadExamples';
 export default function main() {
     const json = {
         metadata: observable().extend({ deferred: true, rateLimit: { timeout: 500, method: 'notifyWhenChangesStop' } }),
-        update: observable(),
+        update: observable().extend({ notify: 'always' }),
         initial: JSON.parse(localStorage.getItem('scalejs_editor_json') ||
             '{"type": "template", "template": "text","text": "Hello World!"}')
     };
     const css = {
         metadata: observable().extend({ deffered: true, rateLimit: { method: 'notifyWhenChangesStop' } }),
-        update: observable(),
+        update: observable().extend({ notify: 'always' }),
         initial: localStorage.getItem('scalejs_editor_css') || ''
     };
     const controls = {
@@ -24,6 +24,7 @@ export default function main() {
         if (index) {
             json.update(examples[index].data.json || {});
             css.update(examples[index].data.css || '');
+            selectedExample(0);
         }
     });
 
