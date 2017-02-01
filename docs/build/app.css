@@ -37,6 +37,9 @@ section#editor_section {
       -ms-flex-direction: column;
           flex-direction: column; }
 
+section#output_section {
+  z-index: 3; }
+
 #output_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -87,7 +90,8 @@ header {
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  z-index: 2; }
   header > span, header > div {
     margin: 0 10px; }
   header.main-header {
