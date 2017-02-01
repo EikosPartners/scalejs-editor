@@ -1,5 +1,6 @@
 import ko from 'knockout';
 import ace from 'brace';
+import elementResizeEvent from 'element-resize-event';
 import 'brace/mode/json';
 import 'brace/mode/css';
 import 'brace/theme/monokai';
@@ -66,5 +67,9 @@ ko.bindingHandlers.editor = {
                 }
             });
         }
+
+        elementResizeEvent(element, () => {
+            editor.resize();
+        });
     }
 };

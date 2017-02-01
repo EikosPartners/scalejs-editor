@@ -1,24 +1,22 @@
 import { observable } from 'knockout';
 import { examples } from '../../examples/loadExamples';
 
-export default function main() {
-    const json = {
+function EditorObj(initialValue) {
+    return Object({
         metadata: observable().extend({ deferred: true, rateLimit: { timeout: 500, method: 'notifyWhenChangesStop' } }),
         update: observable().extend({ notify: 'always' }),
-        initial: JSON.parse(localStorage.getItem('scalejs_editor_json') ||
-            '{"type": "template", "template": "text","text": "Hello World!"}'),
+        initial: initialValue,
         control: observable().extend({ notify: 'always' })
-    };
-    const css = {
-        metadata: observable().extend({ deffered: true, rateLimit: { method: 'notifyWhenChangesStop' } }),
-        update: observable().extend({ notify: 'always' }),
-        initial: localStorage.getItem('scalejs_editor_css') || '',
-        control: observable().extend({ notify: 'always' })
-    };
+    });
+}
+export default function main() {
+    const json = new EditorObj(localStorage.getItem('scalejs_editor_json') ||
+            '{"type": "template", "template": "text","text": "Hello World!"}');
+    const css = new EditorObj(localStorage.getItem('scalejs_editor_css') || '');
     const controls = {
-        main: observable('split'),
+        main: observable('split').extend({ notify: 'always' }),
         output: observable('desktop'),
-        editors: observable('split')
+        editors: observable('split').extend({ notify: 'always' })
     };
     const selectedExample = observable('');
 

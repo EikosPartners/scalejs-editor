@@ -28,6 +28,10 @@ section#editor_section {
     flex-direction: column;
 }
 
+section#output_section {
+    z-index: 3
+}
+
 #output_container {
     display: flex;
     justify-content: center;
