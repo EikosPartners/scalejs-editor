@@ -20,7 +20,11 @@
                         <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
-                <div id="editor_json" data-bind="editor: { storeValue: json.metadata, initialValue: json.initial, updateValue: json.update }"></div>
+                <div class="editor-controls">
+                    <button class="editor-button" data-class="main-editor-actions json zoomOut">-</button>
+                    <button class="editor-button" data-class="main-editor-actions json zoomIn">+</button>
+                </div>
+                <div id="editor_json" data-bind="editor: { storeValue: json.metadata, initialValue: json.initial, updateValue: json.update, control: json.control }"></div>
             </div>
             <div id="editor_2">
                 <header class="secondary-header">
@@ -30,7 +34,11 @@
                         <button class="editor-button" data-class="main-split-actions split editors">Split</button>
                     </div>
                 </header>
-                <div id="editor_css" data-bind="editor: { storeValue: css.metadata, initialValue: css.initial, updateValue: css.update, mode: 'css' }"></div>
+                <div class="editor-controls">
+                    <button class="editor-button" data-class="main-editor-actions css zoomOut">-</button>
+                    <button class="editor-button" data-class="main-editor-actions css zoomIn">+</button>
+                </div>
+                <div id="editor_css" data-bind="editor: { storeValue: css.metadata, initialValue: css.initial, updateValue: css.update, mode: 'css', control: css.control }"></div>
             </div>
         </section>
         <section id="output_section">

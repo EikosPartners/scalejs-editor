@@ -6,7 +6,8 @@ ko.bindingHandlers.split = {
     init: (element, valueAccessor) => {
         const options = valueAccessor();
         const splits = options.splits;
-        const splitDefaultSizes = options.defaultSplits || Array(options.splits.length).fill(100 / options.splits.length);
+        const splitDefaultSizes = options.defaultSplits ||
+            Array(options.splits.length).fill(100 / options.splits.length);
         let instance;
 
         if (options.flex) {
@@ -22,12 +23,12 @@ ko.bindingHandlers.split = {
             instance = split(splits, options);
         }
 
-        if(options.control) {
+        if (options.control) {
             options.control.subscribe((value) => {
                 const action = Array.isArray(value) ? value[0] : value;
                 const controlOption = Array.isArray(value) && value[1] ? value[1] : undefined;
 
-                switch(action) {
+                switch (action) {
                     case 'split':
                         instance.setSizes(controlOption || splitDefaultSizes);
                         break;

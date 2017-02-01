@@ -6,12 +6,14 @@ export default function main() {
         metadata: observable().extend({ deferred: true, rateLimit: { timeout: 500, method: 'notifyWhenChangesStop' } }),
         update: observable().extend({ notify: 'always' }),
         initial: JSON.parse(localStorage.getItem('scalejs_editor_json') ||
-            '{"type": "template", "template": "text","text": "Hello World!"}')
+            '{"type": "template", "template": "text","text": "Hello World!"}'),
+        control: observable().extend({ notify: 'always' })
     };
     const css = {
         metadata: observable().extend({ deffered: true, rateLimit: { method: 'notifyWhenChangesStop' } }),
         update: observable().extend({ notify: 'always' }),
-        initial: localStorage.getItem('scalejs_editor_css') || ''
+        initial: localStorage.getItem('scalejs_editor_css') || '',
+        control: observable().extend({ notify: 'always' })
     };
     const controls = {
         main: observable('split'),

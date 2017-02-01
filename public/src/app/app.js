@@ -6,5 +6,6 @@ import './scalejs.extensions'; // setup extensions before running main module
 import '../../sass/header.scss';
 import '../../sass/gutters.scss';
 import '../../sass/buttons.scss';
+import '../../sass/editor-controls.scss';
 
 mainModule(); // start app

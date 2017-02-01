@@ -24,7 +24,7 @@ ko.bindingHandlers.editor = {
             console.error('You provided a storeValue property but it is not an observable');
         }
 
-        editor.getSession().setMode('ace/mode/' + (options.mode || 'json'));
+        editor.getSession().setMode(`ace/mode/${(options.mode || 'json')}`);
         editor.setTheme('ace/theme/monokai');
 
         // If store value is provided setup the change event listner
@@ -47,6 +47,24 @@ ko.bindingHandlers.editor = {
             // if it is already a string do not stringify
             if (typeof initialValue !== 'string') { initialValue = JSON.stringify(initialValue, null, 4); }
             editor.insert(initialValue);
+        }
+
+        if (options.control) {
+            options.control.subscribe((action) => {
+                switch (action) {
+                    case 'zoomIn':
+                        editor.setOption('fontSize', editor.getOption('fontSize') + 2);
+                        break;
+                    case 'zoomOut':
+                        editor.setOption('fontSize', Math.max(editor.getOption('fontSize') - 2, 2));
+                        break;
+                    case 'zoomDefault':
+                        editor.setOption('fontSize', 12);
+                        break;
+                    default:
+                        break;
+                }
+            });
         }
     }
 };
