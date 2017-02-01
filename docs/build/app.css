@@ -133,3 +133,15 @@ header {
   margin: 0 0 0px 15px;
   position: relative;
   top: -3px; }
+.editor-controls {
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  position: absolute;
+  right: 25px;
+  top: 40px;
+  z-index: 1;
+  opacity: 0.3; }
+  .editor-controls:hover {
+    opacity: 1; }
+  .editor-controls button {
+    min-width: 24px; }

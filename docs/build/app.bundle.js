@@ -60,13 +60,15 @@
 
 	__webpack_require__(343);
 
+	__webpack_require__(345);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// always run main module after others
-	(0, _mainModule2.default)(); // start app
 	// setup extensions before running main module
 
 	// import css
+	(0, _mainModule2.default)(); // start app
+	// always run main module after others
 
 /***/ },
 /* 1 */
@@ -16875,12 +16877,14 @@
 	    var json = {
 	        metadata: (0, _knockout.observable)().extend({ deferred: true, rateLimit: { timeout: 500, method: 'notifyWhenChangesStop' } }),
 	        update: (0, _knockout.observable)().extend({ notify: 'always' }),
-	        initial: JSON.parse(localStorage.getItem('scalejs_editor_json') || '{"type": "template", "template": "text","text": "Hello World!"}')
+	        initial: JSON.parse(localStorage.getItem('scalejs_editor_json') || '{"type": "template", "template": "text","text": "Hello World!"}'),
+	        control: (0, _knockout.observable)().extend({ notify: 'always' })
 	    };
 	    var css = {
 	        metadata: (0, _knockout.observable)().extend({ deffered: true, rateLimit: { method: 'notifyWhenChangesStop' } }),
 	        update: (0, _knockout.observable)().extend({ notify: 'always' }),
-	        initial: localStorage.getItem('scalejs_editor_css') || ''
+	        initial: localStorage.getItem('scalejs_editor_css') || '',
+	        control: (0, _knockout.observable)().extend({ notify: 'always' })
 	    };
 	    var controls = {
 	        main: (0, _knockout.observable)('split'),
@@ -17044,16 +17048,28 @@
 	            }
 	        };
 	    },
-	    'main-output-view': function mainOutputView(ctx, args) {
+	    'main-editor-actions': function mainEditorActions(ctx, args) {
 	        var _this2 = this;
+
+	        var editor = args[1] || 'json';
+	        var action = args[2] || 'zoomIn';
+
+	        return {
+	            click: function click() {
+	                _this2[editor].control(action);
+	            }
+	        };
+	    },
+	    'main-output-view': function mainOutputView(ctx, args) {
+	        var _this3 = this;
 
 	        var value = args[1];
 	        return {
 	            click: function click() {
-	                if (value === (0, _knockout.unwrap)(_this2.controls.output)) {
+	                if (value === (0, _knockout.unwrap)(_this3.controls.output)) {
 	                    return;
 	                }
-	                _this2.controls.output(value);
+	                _this3.controls.output(value);
 	            }
 	        };
 	    },
@@ -17068,7 +17084,7 @@
 /* 322 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"main_template\">\r\n    <header class=\"main-header\">\r\n        <div>\r\n            <span class=\"title-header title-header-large\">ScaleJS 2.0 Editor</span>\r\n            <select class=\"editor-select\" name=\"example\" id=\"example\" data-bind=\"options: examples, optionsText: 'name', optionsValue: 'value', value: selectedExample\"></select>\r\n        </div>\r\n        <div class=\"main-header-actions\">\r\n            <button class=\"editor-button\" data-class=\"main-split-actions 1\">Editors</button>\r\n            <button class=\"editor-button\" data-class=\"main-split-actions 0\">Output</button>\r\n            <button class=\"editor-button\" data-class=\"main-split-actions split\">Split</button>\r\n        </div>\r\n    </header>\r\n    <main class=\"main\" data-bind=\"split: { splits: ['#editor_section','#output_section'], flex: true, control: controls.main }\">\r\n        <section id=\"editor_section\" data-bind=\"split: { splits: ['#editor_1','#editor_2'], direction: 'vertical', flex: true, control: controls.editors }\">\r\n            <div id=\"editor_1\">\r\n                <header class=\"secondary-header\">\r\n                    <span class=\"title-header\">PJSON</span>\r\n                    <div class=\"button-controls\">\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions 1 editors\">Full</button>\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions split editors\">Split</button>\r\n                    </div>\r\n                </header>\r\n                <div id=\"editor_json\" data-bind=\"editor: { storeValue: json.metadata, initialValue: json.initial, updateValue: json.update }\"></div>\r\n            </div>\r\n            <div id=\"editor_2\">\r\n                <header class=\"secondary-header\">\r\n                    <span class=\"title-header\">CSS</span>\r\n                    <div class=\"button-controls\">\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions 0 editors\">Full</button>\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions split editors\">Split</button>\r\n                    </div>\r\n                </header>\r\n                <div id=\"editor_css\" data-bind=\"editor: { storeValue: css.metadata, initialValue: css.initial, updateValue: css.update, mode: 'css' }\"></div>\r\n            </div>\r\n        </section>\r\n        <section id=\"output_section\">\r\n            <header class=\"secondary-header\">\r\n                <span class=\"title-header\">Output</span>\r\n                <div class=\"button-controls\">\r\n                    <button class=\"editor-button\" data-class=\"main-output-view mobile\">Mobile</button>\r\n                    <button class=\"editor-button\" data-class=\"main-output-view desktop\">Desktop</button>\r\n                </div>\r\n            </header>\r\n            <div id=\"output_container\">\r\n                <iframe src=\"./output.html\" frameborder=\"0\" data-class=\"main-iframe-styles\"></iframe>\r\n            </div>\r\n        </section>\r\n    </main>\r\n</div>";
+	module.exports = "<div id=\"main_template\">\r\n    <header class=\"main-header\">\r\n        <div>\r\n            <span class=\"title-header title-header-large\">ScaleJS 2.0 Editor</span>\r\n            <select class=\"editor-select\" name=\"example\" id=\"example\" data-bind=\"options: examples, optionsText: 'name', optionsValue: 'value', value: selectedExample\"></select>\r\n        </div>\r\n        <div class=\"main-header-actions\">\r\n            <button class=\"editor-button\" data-class=\"main-split-actions 1\">Editors</button>\r\n            <button class=\"editor-button\" data-class=\"main-split-actions 0\">Output</button>\r\n            <button class=\"editor-button\" data-class=\"main-split-actions split\">Split</button>\r\n        </div>\r\n    </header>\r\n    <main class=\"main\" data-bind=\"split: { splits: ['#editor_section','#output_section'], flex: true, control: controls.main }\">\r\n        <section id=\"editor_section\" data-bind=\"split: { splits: ['#editor_1','#editor_2'], direction: 'vertical', flex: true, control: controls.editors }\">\r\n            <div id=\"editor_1\">\r\n                <header class=\"secondary-header\">\r\n                    <span class=\"title-header\">PJSON</span>\r\n                    <div class=\"button-controls\">\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions 1 editors\">Full</button>\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions split editors\">Split</button>\r\n                    </div>\r\n                </header>\r\n                <div class=\"editor-controls\">\r\n                    <button class=\"editor-button\" data-class=\"main-editor-actions json zoomOut\">-</button>\r\n                    <button class=\"editor-button\" data-class=\"main-editor-actions json zoomIn\">+</button>\r\n                </div>\r\n                <div id=\"editor_json\" data-bind=\"editor: { storeValue: json.metadata, initialValue: json.initial, updateValue: json.update, control: json.control }\"></div>\r\n            </div>\r\n            <div id=\"editor_2\">\r\n                <header class=\"secondary-header\">\r\n                    <span class=\"title-header\">CSS</span>\r\n                    <div class=\"button-controls\">\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions 0 editors\">Full</button>\r\n                        <button class=\"editor-button\" data-class=\"main-split-actions split editors\">Split</button>\r\n                    </div>\r\n                </header>\r\n                <div class=\"editor-controls\">\r\n                    <button class=\"editor-button\" data-class=\"main-editor-actions css zoomOut\">-</button>\r\n                    <button class=\"editor-button\" data-class=\"main-editor-actions css zoomIn\">+</button>\r\n                </div>\r\n                <div id=\"editor_css\" data-bind=\"editor: { storeValue: css.metadata, initialValue: css.initial, updateValue: css.update, mode: 'css', control: css.control }\"></div>\r\n            </div>\r\n        </section>\r\n        <section id=\"output_section\">\r\n            <header class=\"secondary-header\">\r\n                <span class=\"title-header\">Output</span>\r\n                <div class=\"button-controls\">\r\n                    <button class=\"editor-button\" data-class=\"main-output-view mobile\">Mobile</button>\r\n                    <button class=\"editor-button\" data-class=\"main-output-view desktop\">Desktop</button>\r\n                </div>\r\n            </header>\r\n            <div id=\"output_container\">\r\n                <iframe src=\"./output.html\" frameborder=\"0\" data-class=\"main-iframe-styles\"></iframe>\r\n            </div>\r\n        </section>\r\n    </main>\r\n</div>";
 
 /***/ },
 /* 323 */
@@ -17166,6 +17182,24 @@
 	                initialValue = JSON.stringify(initialValue, null, 4);
 	            }
 	            editor.insert(initialValue);
+	        }
+
+	        if (options.control) {
+	            options.control.subscribe(function (action) {
+	                switch (action) {
+	                    case 'zoomIn':
+	                        editor.setOption('fontSize', editor.getOption('fontSize') + 2);
+	                        break;
+	                    case 'zoomOut':
+	                        editor.setOption('fontSize', Math.max(editor.getOption('fontSize') - 2, 2));
+	                        break;
+	                    case 'zoomDefault':
+	                        editor.setOption('fontSize', 12);
+	                        break;
+	                    default:
+	                        break;
+	                }
+	            });
 	        }
 	    }
 	};
@@ -38087,6 +38121,13 @@
 /***/ },
 /* 342 */,
 /* 343 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 344 */,
+/* 345 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

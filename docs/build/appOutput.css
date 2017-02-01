@@ -649,6 +649,13 @@ span.validation-message {
     border-right: 10px solid transparent;
     left: 75px;
     top: -10px; }
+
+/* 
+    hiding the time container,
+    since we updated to pikday-time for the datetimepicker
+*/
+.pika-time-container {
+  display: none; }
 /* sass-loader:inject-overrides */
 /* Example tokeninput style #2: pjson style */
 ul.token-input-list-pjson {
