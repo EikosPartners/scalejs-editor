@@ -12,12 +12,10 @@ ko.bindingHandlers.split = {
 
         if (options.flex) {
             instance = split(splits, merge({
-                elementStyle: (dim, size, gutterSize) => {
-                    return { 'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px' }
-                },
-                gutterStyle: (dim, gutterSize) => {
-                    return { 'flex-basis': gutterSize + 'px' }
-                }
+                elementStyle: (dim, size, gutterSize) => (
+                    { 'flex-basis': `calc(${size}% - ${gutterSize}px` }
+                ),
+                gutterStyle: (dim, gutterSize) => ({ 'flex-basis': `${gutterSize}px` })
             }, options));
         } else {
             instance = split(splits, options);
@@ -41,4 +39,4 @@ ko.bindingHandlers.split = {
             });
         }
     }
-}
+};

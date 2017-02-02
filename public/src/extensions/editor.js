@@ -1,16 +1,18 @@
+import elementResizeEvent from 'element-resize-event';
 import ko from 'knockout';
 import ace from 'brace';
-import elementResizeEvent from 'element-resize-event';
+import 'brace/theme/monokai';
 import 'brace/mode/json';
 import 'brace/mode/css';
-import 'brace/theme/monokai';
 
 /**
  * editor binding ex:
- * {
- *    storeValues: observable.
- *    initialValue: var or observable
- * }
+ *  {
+ *      storeValues: observable.
+ *      initialValue: var or observable,
+ *      updateValue: observable
+ *      control: observable
+ *  }
  */
 ko.bindingHandlers.editor = {
     init: (element, valueAccessor) => {
@@ -54,7 +56,7 @@ ko.bindingHandlers.editor = {
             options.control.subscribe((action) => {
                 switch (action) {
                     case 'zoomIn':
-                        editor.setOption('fontSize', editor.getOption('fontSize') + 2);
+                        editor.setOption('fontSize', Math.min(editor.getOption('fontSize') + 2, 72));
                         break;
                     case 'zoomOut':
                         editor.setOption('fontSize', Math.max(editor.getOption('fontSize') - 2, 2));
@@ -68,6 +70,7 @@ ko.bindingHandlers.editor = {
             });
         }
 
+        // if the editor is element is resized, resize the editor
         elementResizeEvent(element, () => {
             editor.resize();
         });
