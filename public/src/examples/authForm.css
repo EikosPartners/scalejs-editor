@@ -77,7 +77,25 @@ html, body, .scalejs-app {
     color: lightgrey;
 }
 
-.btn-login button {
+.register {
+    margin-top: 30px;
+    padding: 15px 30px;
+    border-top: 1px solid white;
+    position: relative;
+}
+
+.register:before {
+    content: "OR";
+    position: absolute;
+    top: -8px;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #475253;
+    padding: 0 10px;
+}
+
+.btn button {
     width: 100%;
     padding: 10px 0;
     background-color: #363737;

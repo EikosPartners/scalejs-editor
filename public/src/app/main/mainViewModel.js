@@ -41,6 +41,26 @@ export default function main() {
         localStorage.setItem('scalejs_editor_css', styles);
     });
 
+    // mock routing system between examples
+    window.addEventListener('storage', (e) => {
+        const key = e.key;
+        const data = e.newValue;
+        let examplesLength;
+
+        if (key === 'scalejs_editor_route') {
+            examplesLength = examples.length;
+
+            for (let i = 0; i < examplesLength; i++) {
+                if (examples[i].name === data) {
+                    selectedExample(examples[i].value);
+                    break;
+                }
+            }
+
+            localStorage.removeItem('scalejs_editor_route');
+        }
+    });
+
     return {
         json,
         css,

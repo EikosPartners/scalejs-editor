@@ -41,24 +41,22 @@
                             }
                         },
                         {
+                            "type": "input",
+                            "inputType": "text",
+                            "id": "passwordConfirm",
+                            "label": "Confirm Password",
+                            "options": {
+                                "validations": {
+                                    "required": true
+                                }
+                            }
+                        },
+                        {
                             "type": "action",
                             "actionType": "event",
-                            "text": "Login",
-                            "validate": "userAuthForm.validate",
-                            "classes": "btn"
-                        }
-                    ]
-                },
-                {
-                    "type": "template",
-                    "template": "div",
-                    "classes": "register",
-                    "children": [
-                        {
-                            "type": "route",
-                            "route": "Auth Form Register",
                             "text": "Register",
-                            "classes": "btn"
+                            "validate": "userAuthForm.validate",
+                            "classes": "btn btn-login"
                         }
                     ]
                 }
