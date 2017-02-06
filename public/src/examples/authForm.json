@@ -78,17 +78,10 @@
                     ]
                 },
                 {
-                    "type": "template",
-                    "template": "div",
-                    "classes": "register",
-                    "children": [
-                        {
-                            "type": "route",
-                            "route": "Auth Form Register",
-                            "text": "Register",
-                            "classes": "btn"
-                        }
-                    ]
+                    "type": "route",
+                    "route": "Auth Form Register",
+                    "text": "Register",
+                    "classes": "register btn"
                 }
             ]
         }
