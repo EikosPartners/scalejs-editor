@@ -134,10 +134,8 @@ html, body, .scalejs-app {
 }
 
 @media (max-width: 400px) {
-    .form-container {
-        justify-content: space-around;
-    }
     .validations {
         position: relative;
+        margin-bottom: 20px;
     }
 }
