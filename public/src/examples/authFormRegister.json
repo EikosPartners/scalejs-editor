@@ -31,7 +31,7 @@
                         },
                         {
                             "type": "input",
-                            "inputType": "text",
+                            "inputType": "password",
                             "id": "password",
                             "label": "Password",
                             "options": {
@@ -42,21 +42,53 @@
                         },
                         {
                             "type": "input",
-                            "inputType": "text",
+                            "inputType": "password",
                             "id": "passwordConfirm",
                             "label": "Confirm Password",
                             "options": {
                                 "validations": {
-                                    "required": true
+                                    "required": true,
+                                    "expression": {
+                                        "term": "password === passwordConfirm",
+                                        "message": "Passwords must match"
+                                    }
                                 }
                             }
                         },
                         {
                             "type": "action",
-                            "actionType": "event",
+                            "actionType": "ajax",
                             "text": "Register",
                             "validate": "userAuthForm.validate",
-                            "classes": "btn btn-login"
+                            "classes": "btn btn-login",
+                            "options": {
+                                "target": {
+                                    "uri": "register",
+                                    "options": {
+                                        "type": "POST"
+                                    }
+                                },
+                                "nextActions": [
+                                    {
+                                        "type": "action",
+                                        "actionType": "popup",
+                                        "options": {
+                                            "title": "Success",
+                                            "message": "You have successfully registered!"
+                                        }
+                                    }
+                                ],
+                                "errorActions": [
+                                    {
+                                        "type": "action",
+                                        "actionType": "event",
+                                        "options": {
+                                            "target": "userAuthForm.showServerErrors",
+                                            "paramsKey": "error"
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }

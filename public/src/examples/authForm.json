@@ -31,7 +31,7 @@
                         },
                         {
                             "type": "input",
-                            "inputType": "text",
+                            "inputType": "password",
                             "id": "password",
                             "label": "Password",
                             "options": {
@@ -42,10 +42,38 @@
                         },
                         {
                             "type": "action",
-                            "actionType": "event",
+                            "actionType": "ajax",
                             "text": "Login",
                             "validate": "userAuthForm.validate",
-                            "classes": "btn"
+                            "classes": "btn",
+                            "options": {
+                                "target": {
+                                    "uri": "login",
+                                    "options": {
+                                        "type": "POST"
+                                    }
+                                },
+                                "nextActions": [
+                                    {
+                                        "type": "action",
+                                        "actionType": "popup",
+                                        "options": {
+                                            "title": "Success",
+                                            "message": "You have successfully logged in!"
+                                        }
+                                    }
+                                ],
+                                "errorActions": [
+                                    {
+                                        "type": "action",
+                                        "actionType": "event",
+                                        "options": {
+                                            "target": "userAuthForm.showServerErrors",
+                                            "paramsKey": "error"
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     ]
                 },
