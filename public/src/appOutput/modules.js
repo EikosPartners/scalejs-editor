@@ -15,3 +15,4 @@ import 'scalejs.metadatafactory-common/dist/action/actions/popup/popup.scss';
 // Load app-specific modules:
 import './route/routeModule';
 import './validations/validationsModule';
+import './templates/grid/gridTemplateModule';

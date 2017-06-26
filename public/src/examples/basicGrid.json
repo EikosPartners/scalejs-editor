@@ -1,0 +1,58 @@
+{
+    "type": "template",
+    "template": "div",
+    "classes": "viewport",
+    "children": [
+        {
+            "type": "template",
+            "template": "div",
+            "classes": "viewport padding-top-20",
+            "children": [
+                {
+                    "type": "grid",
+                    "id": "grid-demo",
+                    "options": {
+                        "infinite": true,
+                        "fixedHeader": true,
+                        "clientSearch": false,
+                        "hasChildren": {
+                            "template": "grid_child_template",
+                            "onRowSelect": true,
+                            "accordion": true
+                        }
+                    },
+                    "pagination": {
+                        "start": 0,
+                        "limit": 30
+                    },
+                    "dataSourceEndpoint": {
+                        "target": {
+                            "uri": "grid"
+                        },
+                        "keyMap": {
+                            "resultsKey": "data"
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "colData1",
+                            "title": "Data Column 1"
+                        },
+                        {
+                            "data": "colData2",
+                            "title": "Data Column 2"
+                        },
+                        {
+                            "data": "colData3",
+                            "title": "Data Column 3"
+                        },
+                        {
+                            "data": "colData4",
+                            "title": "Data Column 4"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

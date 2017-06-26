@@ -1,0 +1,48 @@
+html, body, .scalejs-app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  #475253;
+}
+
+.viewport {
+    width: 50vw;
+    min-width: 270px;
+    max-width: 600px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+table.pjson thead tr {
+    height: 60px;
+}
+
+table.pjson thead th {
+    text-align: center;
+    background-color: black;
+    color: lightgray;
+    font-size:  12px;
+}
+
+table.pjson tbody > tr {
+    border: none;
+}
+
+table.pjson tr:nth-child(odd) {
+    background: lightgray;
+}
+
+table.pjson tr:hover {
+    border: none;
+    background-color: lightgreen !important;
+}
+
+table.pjson td {
+    text-align: center;
+}
+
+.padding-top-20 {
+    padding-top: 20px;
+}

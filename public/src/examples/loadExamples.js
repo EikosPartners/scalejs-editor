@@ -1,6 +1,8 @@
 import authFormCss from './authForm.css';
 import authFormJson from './authForm.json';
 import authFormRegisterJson from './authFormRegister.json';
+import basicGridJson from './basicGrid.json';
+import basicGridCss from './basicGrid.css';
 
 const examples = [
     {
@@ -18,6 +20,13 @@ const examples = [
         data: {
             json: JSON.stringify(authFormRegisterJson, null, 4),
             css: authFormCss
+        }
+    },
+    {
+        name: 'Basic Grid',
+        data: {
+            json: JSON.stringify(basicGridJson, null, 4),
+            css: basicGridCss
         }
     }
 ];
